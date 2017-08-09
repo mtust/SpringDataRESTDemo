@@ -19,7 +19,7 @@ public class CustomerValidator implements Validator {
         final Customer customer = (Customer) target;
         final Double budget = customer.getBudget();
         List<Product> productList = customer.getProducts();
-        if (productList.stream().mapToDouble(Product::getPrice).sum() > customer.getBudget()) {
+        if (productList != null && productList.stream().mapToDouble(Product::getPrice).sum() > budget) {
             errors.rejectValue("budget", "400", customer.getName() + " haven't enough money");
         }
     }
